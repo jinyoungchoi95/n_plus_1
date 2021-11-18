@@ -23,7 +23,7 @@ public class User {
     @Column(length = 10, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Article> articles = emptySet();
 
     protected User() {
