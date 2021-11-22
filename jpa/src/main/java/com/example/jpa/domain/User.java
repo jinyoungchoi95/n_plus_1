@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +25,8 @@ public class User {
     @Column(length = 10, nullable = false)
     private String name;
 
+//    @BatchSize(size = 2)
+    @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Article> articles = emptySet();
 
