@@ -29,4 +29,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findAll(Pageable pageable);
 
+    @EntityGraph(attributePaths = {"articles", "questions"}, type = EntityGraphType.FETCH)
+    @Query("select distinct u from User u left join u.articles left join u.questions")
+    List<User> findAllEntityGraph2();
+
+    @Query("select distinct u from User u left join u.articles left join u.questions")
+    Page<User> findAllPage2(Pageable pageable);
+
 }

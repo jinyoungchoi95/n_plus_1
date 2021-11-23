@@ -18,3 +18,10 @@ INSERT INTO articles (user_id, title, content) values
 (2, 'title2_3', 'content2_3'),
 (2, 'title2_4', 'content2_4'),
 (2, 'title2_5', 'content2_5');
+
+INSERT INTO questions (user_id, title, content) values
+(2, 'questions_title2_1', 'content2_1'),
+(2, 'questions_title2_2', 'content2_2'),
+(2, 'questions_title2_3', 'content2_3'),
+(2, 'questions_title2_4', 'content2_4'),
+(2, 'questions_title2_5', 'content2_5');

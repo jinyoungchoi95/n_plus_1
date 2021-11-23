@@ -1,8 +1,7 @@
 package com.example.jpa.domain;
 
-import static java.util.Collections.emptySet;
-
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "users")
@@ -25,10 +23,13 @@ public class User {
     @Column(length = 10, nullable = false)
     private String name;
 
-//    @BatchSize(size = 2)
-    @Fetch(FetchMode.SUBSELECT)
+    @BatchSize(size = 100)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Article> articles = emptySet();
+    private List<Article> articles = new ArrayList<>();
+
+    @BatchSize(size = 100)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Question> questions = new ArrayList<>();
 
     protected User() {
     }
@@ -41,7 +42,7 @@ public class User {
         return name;
     }
 
-    public Set<Article> articles() {
+    public List<Article> articles() {
         return articles;
     }
 
